@@ -14,7 +14,7 @@ import guiTeacher.components.*;
 import guiTeacher.interfaces.KeyedComponent;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-import mimiPackage.HeartImage;
+import mimiPackage.Zombies;
 
 public class Sampler extends GUIApplication {
 
@@ -121,7 +121,7 @@ public class Sampler extends GUIApplication {
 			}); 
 			viewObjects.add(cb);
 			
-			viewObjects.add(new HeartImage());
+			viewObjects.add(new Zombies());
 			
 		}
 		
