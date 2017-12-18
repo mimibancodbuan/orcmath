@@ -14,6 +14,9 @@ public class PVZ extends AnimatedComponent {
 
 	public PVZ(String plantname, int price) {
 		super(40, 40, 125, 140);
+		this.plantname = plantname;
+		this.price = price;
+		
 		addSequence("resources/MimiSpriteSheet.png", 100, 0, 0, 125, 140, 6);
 		Thread animation = new Thread(this);
 		animation.start();
