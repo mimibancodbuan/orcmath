@@ -20,7 +20,7 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 	private Button saveButton;
 	private Button deleteButton;
 	private FileOpenButton openButton;
-	private PVZ catalog;
+	private CatalogMaker catalog;
 
 	public CatalogScreen(int width, int height) {
 		super(width, height);
@@ -33,6 +33,7 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 		name = new TextField(40, 90, 200, 30, "insert name", "name");
 		viewObjects.add(name);
 		price = new TextField(40, 140, 200, 30, "insert price", "price");
+		price.setInputType(TextField.INPUT_TYPE_NUMERIC);
 		viewObjects.add(price);
 		
 		text = new TextArea(40, 180, 200, 30, "this is where text goes");
@@ -66,10 +67,11 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 		openButton = new FileOpenButton(40, 280, 200, 30, null, this);
 		viewObjects.add(openButton);
 		
-		catalog = new PVZ();
+		catalog = new CatalogMaker();
 	}
 
 	protected void addClick() {
+		//PVZ p = new PVZ(descriptionBox.getText(), name.getText(), Integer.parseInt(price.getText()));
 		text.setText("add button clicked");
 	}
 	
@@ -83,13 +85,11 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 
 	@Override
 	public void setFile(File f) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public JFrame getWindow() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
