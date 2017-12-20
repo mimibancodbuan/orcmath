@@ -1,16 +1,26 @@
 package mimiPackage;
 
+import java.io.File;
 import java.util.List;
 
-import guiTeacher.components.TextField;
+import javax.swing.JFrame;
+
+import guiTeacher.components.*;
+import guiTeacher.interfaces.FileRequester;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class CatalogScreen extends FullFunctionScreen {
+public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 	
 	private TextField descriptionBox;
 	private TextField name;
 	private TextField price;
+	private TextArea text;
+	private Button addButton;
+	private Button saveButton;
+	private Button deleteButton;
+	private FileOpenButton openButton;
+	private PVZ catalog;
 
 	public CatalogScreen(int width, int height) {
 		super(width, height);
@@ -25,6 +35,62 @@ public class CatalogScreen extends FullFunctionScreen {
 		price = new TextField(40, 140, 200, 30, "insert price", "price");
 		viewObjects.add(price);
 		
+		text = new TextArea(40, 180, 200, 30, "this is where text goes");
+		viewObjects.add(text);
+		
+		addButton = new Button(40, 210, 200, 30, "add", new Action() {
+			
+			@Override
+			public void act() {
+				addClick();
+			}
+		});
+		viewObjects.add(addButton);
+		saveButton = new Button(40, 230, 200, 30, "save", new Action() {
+
+			@Override
+			public void act() {
+				saveClick();
+			}
+		});
+		viewObjects.add(saveButton);
+		deleteButton = new Button(40, 250, 200, 30, "delete", new Action() {
+
+			@Override
+			public void act() {
+				deleteClick();
+			}
+		});
+		viewObjects.add(deleteButton);
+		
+		openButton = new FileOpenButton(40, 280, 200, 30, null, this);
+		viewObjects.add(openButton);
+		
+		catalog = new PVZ();
+	}
+
+	protected void addClick() {
+		text.setText("add button clicked");
+	}
+	
+	protected void saveClick() {
+		text.setText("save button clicked");
+	}
+	
+	protected void deleteClick() {
+		text.setText("delete button clicked");
+	}
+
+	@Override
+	public void setFile(File f) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public JFrame getWindow() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
