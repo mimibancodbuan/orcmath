@@ -15,6 +15,8 @@ public class CardGUI extends GUIApplication {
 	public CardGUI(int width, int height) {
 		super(width, height);
 		setVisible(true);
+		
+		
 	}
 
 	@Override
@@ -36,11 +38,6 @@ public class CardGUI extends GUIApplication {
 		card = new CardGUI(800, 500);
 		Thread runner = new Thread(card);
 		runner.start();
-	}
-
-	public void setScreen(Inside inside2) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -1,5 +1,6 @@
 package holidayCard;
 
+import java.awt.Color;
 import java.util.List;
 
 import guiTeacher.components.*;
@@ -8,9 +9,8 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 
 public class Front extends FullFunctionScreen {
 
-	private TextBox greeting;
+	private TextArea greeting;
 	private Button open;
-	
 	
 	public Front(int width, int height) {
 		super(width, height);
@@ -29,7 +29,9 @@ public class Front extends FullFunctionScreen {
 		});
 		viewObjects.add(open);
 		
-		greeting = new TextBox(400, 300, 200, 30, "Happy Holidays!");
+		greeting = new TextArea(400, 100, 400, 400, "Happy Holidays!");
+		greeting.setCustomTextColor(Color.green);
+		greeting.update();
 		viewObjects.add(greeting);
 	}
 	

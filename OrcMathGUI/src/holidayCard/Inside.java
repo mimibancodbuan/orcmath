@@ -13,7 +13,7 @@ public class Inside extends FullFunctionScreen{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		// TODO Auto-generated method stub
+		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/haha.jpg"));
 		
 	}
 	
