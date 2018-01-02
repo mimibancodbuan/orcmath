@@ -27,6 +27,7 @@ public class Front extends FullFunctionScreen {
 				CardGUI.card.setScreen(CardGUI.inside);
 			}
 		});
+		
 		viewObjects.add(open);
 		
 		greeting = new TextArea(400, 100, 400, 400, "Happy Holidays!");
