@@ -27,15 +27,15 @@ public class CustomButton extends Button {
 	}
 	
 	public void updateString1(String string){
-		
+		s1 = string;
 	}
 
 	public void updateString2(String string){
-		
+		s2 = string;
 	}
 
 	public void setIconColor(Color color){
-		
+		this.color = color;
 	}
 
 }
