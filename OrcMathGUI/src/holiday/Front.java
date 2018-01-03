@@ -12,7 +12,6 @@ public class Front extends FullFunctionScreen {
 	
 	public Front(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
