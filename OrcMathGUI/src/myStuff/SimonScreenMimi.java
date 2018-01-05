@@ -1,8 +1,10 @@
 package myStuff;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
@@ -27,8 +29,63 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		label.setText("");
+	    nextRound();
+	}
 
+	private void nextRound() {
+		acceptingInput=false;
+		roundNumber++;
+		sequence.add(randomMove());
+		progress.setRound(roundNumber);
+		progress.setSequenceSize(sequence.size());
+		changeText("Simon's turn");
+		label.setText("");
+		playSequence();
+		changeText("Your Turn");
+		acceptingInput=true;
+		sequenceIndex=0;
+	}
+
+	private void playSequence() {
+		ButtonInterfaceMimi b = null;
+		for(int i=0; i<sequence.size(); i++) {
+			if(b!= null) {
+				b.dim();
+				b=sequence.get(i).getButton();
+				b.highlight();
+				int sleepTime = Math.abs(800-(roundNumber*10));
+				Thread blink = new Thread(new Runnable() {
+					
+					public void run() {
+						try {
+							Thread.sleep(sleepTime);
+						}
+						catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				blink.start();
+			}
+		}
+		b.dim();
+	}
+
+	private void changeText(String string) {
+		Thread blink = new Thread(new Runnable(){
+
+			public void run(){
+				label.setText(string);
+				try {
+					Thread.sleep(1000);
+					} catch (InterruptedException e) {
+					e.printStackTrace();
+					}
+			}
+
+		});
+		blink.start();
 	}
 
 	@Override
@@ -58,7 +115,7 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 	}
 
 	/**
-	 * Placeholder until partnew finishes implementation of MoveInterface
+	 * Placeholder until partner finishes implementation of MoveInterface
 	 * @param bIndex
 	 * @return
 	 */
@@ -76,7 +133,53 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 
 	private void addButtons() {
 		int numberOfButtons = 4;
-		ButtonInterfaceMimi[] buttons = new ButtonInterfaceMimi[];
+		buttons = new ButtonInterfaceMimi[numberOfButtons];
+		Color[] colors = {Color.green, Color.red, Color.yellow, Color.blue};
+		
+		for(int i=0; i<numberOfButtons; i++) {
+			final ButtonInterfaceMimi b = getAButton();
+			buttons[i] = b;
+			b.setColor(colors[i]); 
+		    b.setX(i+15);
+		    b.setY(i);
+		    b.setAction(new Action() {
+		    	
+				public void act() {
+					if(acceptingInput) {
+						Thread blink = new Thread(new Runnable() {
+							
+							@Override
+							public void run() {
+								b.highlight();
+								try {
+									Thread.sleep(800);
+									}
+								catch (InterruptedException e) {
+									e.printStackTrace();
+									}
+									b.dim();
+							}
+							
+						});
+						blink.start();
+						if( b == sequence.get(sequenceIndex).getButton()) {
+							sequenceIndex++;
+						}
+						else
+							progress.gameOver();
+					}
+					if(sequenceIndex == sequence.size()){ 
+					    Thread nextRound = new Thread(SimonScreenMimi.this); 
+					    nextRound.start(); 
+					}
+				}
+				
+			});
+		}
+	}
+
+	private ButtonInterfaceMimi getAButton() {
+		return null;
 	}
 
 }
