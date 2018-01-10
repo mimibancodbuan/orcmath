@@ -11,16 +11,9 @@ import guiTeacher.components.Button;
 public class ButtonMimi extends Button implements ButtonInterfaceMimi {
 
 	private Color original;
-	private boolean on;
-	private String index;
 	
 	public ButtonMimi(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, "", null);
-		this.index=index;
-	}
-	
-	public void setOn(boolean o) {
-		on = o;
 	}
 
 	@Override
@@ -38,7 +31,9 @@ public class ButtonMimi extends Button implements ButtonInterfaceMimi {
 
 	@Override
 	public void highlight() {
-		this.setColor(original.brighter());
+//		this.setColor(original.brighter());
+//		update();
+		this.setColor(Color.gray);
 		update();
 	}
 	

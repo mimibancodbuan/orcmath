@@ -50,7 +50,13 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 	}
 
 	private void playSequence() {
+//		ButtonInterfaceMimi b = null;
 		for(int i=0; i<sequence.size(); i++) {
+//			if(b != null) {
+//				b.dim();
+//			}
+//			b = sequence.get(i).getAButton();
+//			b.highlight();
 			int sleepTime = Math.abs(800-(roundNumber*10));
 			try        
 			{
@@ -153,7 +159,7 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 							
 						});
 						blink.start();
-						if( b == sequence.get(sequenceIndex).getButton()) {
+						if( b == sequence.get(sequenceIndex).getAButton()) {
 							sequenceIndex++;
 						}
 						else
