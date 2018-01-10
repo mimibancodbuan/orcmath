@@ -51,7 +51,7 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 
 	private void playSequence() {
 		for(int i=0; i<sequence.size(); i++) {
-			int sleepTime = Math.abs(1500-6*roundNumber);
+			int sleepTime = Math.abs(800-(roundNumber*10));
 			try        
 			{
 			    Thread.sleep(sleepTime);
