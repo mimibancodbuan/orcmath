@@ -170,7 +170,7 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 	}
 
 	private ButtonInterfaceMimi getAButton() {
-		return new ButtonMimi(80, 80, 50, 50, "", null);
+		return new ButtonMimi(0, 0, 50, 50, "", null);
 	}
 
 }
