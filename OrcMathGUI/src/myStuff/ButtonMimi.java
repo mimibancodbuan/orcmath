@@ -10,42 +10,45 @@ import guiTeacher.components.Button;
 
 public class ButtonMimi extends Button implements ButtonInterfaceMimi {
 
-private Color original;
-private boolean hover;
-
-	public ButtonMimi(int x, int y, int w, int h, String text, Color color, Action action) {
-		super(x, y, w, h, text, color, action);
-	}
-
+	private Color original;
+	private boolean on;
+	private String index;
+	
 	public ButtonMimi(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, "", null);
-		update();
+		this.index=index;
+	}
+	
+	public void setOn(boolean o) {
+		on = o;
 	}
 
 	@Override
 	public void setColor(Color color) {
-		this.setColor(color);
-		color = original;
-		this.hover = false;
-	}
-
-	@Override
-	public void highlight() {
-		setColor(original.brighter());
+		this.setForeground(color);
+		original = color;
+		update();
 	}
 
 	@Override
 	public void dim() {
-		setColor(original.darker());
+		this.setForeground(original);
+		update();
+	}
+
+	@Override
+	public void highlight() {
+		this.setColor(original.brighter());
+		update();
 	}
 	
 	public void drawButton(Graphics2D g, boolean hover) {
-		g.drawRect(20,50,100,100);
-		if(hover == true) {
-			highlight();
-		}
-		else
-			dim();
-	}
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, curveX, curveY);
+			g.setColor(getForeground());
+			g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, curveX, curveY);
+
+}
 
 }

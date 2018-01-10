@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.Action;
+import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
@@ -15,6 +16,7 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 	public ButtonInterfaceMimi[] buttons;
 	public ProgressInterfaceMimi progress;
 	public ArrayList<MoveInterfaceMimi> sequence;
+	private TextArea text;
 
 	public int roundNumber;
 	public boolean acceptingInput;
@@ -48,28 +50,17 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 	}
 
 	private void playSequence() {
-		ButtonInterfaceMimi b = null;
 		for(int i=0; i<sequence.size(); i++) {
-			if(b!= null) {
-				b.dim();
-				b=sequence.get(i).getButton();
-				b.highlight();
-				int sleepTime = Math.abs(800-(roundNumber*10));
-				Thread blink = new Thread(new Runnable() {
-					
-					public void run() {
-						try {
-							Thread.sleep(sleepTime);
-						}
-						catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				});
-				blink.start();
+			int sleepTime = Math.abs(1500-6*roundNumber);
+			try        
+			{
+			    Thread.sleep(sleepTime);
+			} 
+			catch(InterruptedException ex) 
+			{
+			    Thread.currentThread().interrupt();
 			}
 		}
-		b.dim();
 	}
 
 	private void changeText(String string) {
@@ -128,7 +119,7 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 	 * @return
 	 */
 	private ProgressInterfaceMimi getProgress() {
-		return null;
+		return new ProgressMimi(100, 300, 50, 50); 
 	}
 
 	private void addButtons() {
@@ -140,8 +131,8 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 			final ButtonInterfaceMimi b = getAButton();
 			buttons[i] = b;
 			b.setColor(colors[i]); 
-		    b.setX(i+15);
-		    b.setY(i);
+			b.setX((int) (80+50*Math.cos(i*(Math.PI/2))));
+			b.setY((int) (80+50*Math.sin(i*(Math.PI/2))));
 		    b.setAction(new Action() {
 		    	
 				public void act() {
@@ -179,7 +170,7 @@ public class SimonScreenMimi extends ClickableScreen implements Runnable{
 	}
 
 	private ButtonInterfaceMimi getAButton() {
-		return null;
+		return new ButtonMimi(80, 80, 50, 50, "", null);
 	}
 
 }
